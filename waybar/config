@@ -51,7 +51,7 @@
     },
   "clock": {
 	"interval":1,
-  	"format": "{:%H:%M:%S  %A %d %B %Y}",
+  	"format": "{:%I:%M:%S %p  %A %d %b %y}",
 //  	"format-alt": "{:%A, %B %d, %Y (%R)}  ",
   	"tooltip-format": "<tt><small>{calendar}</small></tt>",
   	"calendar": {
@@ -82,6 +82,7 @@
         "tooltip": true
     },
     "memory": {
+	"interval": 1,
         "format": "{used}/{total}Gb "
     },
     "temperature": {
@@ -99,21 +100,24 @@
         "format-icons": ["", "", "", "", "", "", "", "", ""]
     },
     "battery": {
+        "interval" : 1,
         "states": {
-            // "good": 95,
+           // "good": 95,
             "warning": 30,
             "critical": 15
         },
         "format": "{capacity}% {icon}",
         "format-charging": "{capacity}% ",
         "format-plugged": "{capacity}% ",
-        "format-alt": "{time} {icon}",
+        //"format-alt": "{time} {icon}",
         // "format-good": "", // An empty format will hide the module
         // "format-full": "",
-        "format-icons": ["", "", "", "", ""]
+        "format-icons": ["", "", "", "", ""],
+        "on-click": "echo $((1^$(cat /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode))) > /sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode"
     },
     "battery#bat2": {
-        "bat": "BAT2"
+        "bat": "BAT2",
+        
     },
     "network": {
         // "interface": "wlp2*", // (Optional) To force the use of this interface
