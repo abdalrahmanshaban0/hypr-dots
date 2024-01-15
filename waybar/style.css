@@ -108,6 +108,7 @@ window#waybar.chromium {
 #battery {
     background-color: #bbccdd;
     color: #333333;
+    min-width:47px;
 }
 
 #battery.charging {
@@ -137,12 +138,12 @@ label:focus {
 }
 
 #cpu {
-    background-color: #2ecc71;
+    background-color: #bbccdd;
     color: #333333;
 }
 
 #memory {
-    background-color: #9b59b6;
+    background-color: #bbccdd;
 }
 
 #backlight {
@@ -182,7 +183,7 @@ label:focus {
 }
 
 #temperature {
-    background-color: #f0932b;
+    background-color: #bbccdd;
 }
 
 #temperature.critical {
