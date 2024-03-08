@@ -8,20 +8,28 @@ set mouse=a
 
 "Theme
 syntax enable
-colorscheme dracula
-"set background=dark
-hi Normal guibg=NONE ctermbg=NONE
+
+" Workaround for creating transparent bg
+autocmd SourcePost * highlight Normal     ctermbg=NONE guibg=NONE
+            \ |    highlight LineNr     ctermbg=NONE guibg=NONE
+            \ |    highlight SignColumn ctermbg=NONE guibg=NONE
 
 "Cursorline highlight
-set cursorline
-set cursorcolumn
-highlight Cursorline guibg=#2b2b2b
-highlight Cursorlolumn guibg=#2b2b2b
+"set cursorline
+"set cursorcolumn
 set hlsearch
 
 "Clipboard
-set clipboard=unnamedplus
-xnoremap <silent> <leader>y y:call system("wl-copy --trim-newline", @*)<cr>:call system("wl-copy -p --trim-newline", @*)<cr>
+""set clipboard=unnamedplus
+xnoremap <silent> <C-c> :w !wl-copy<CR><CR>
+
+"auto closeing
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap <expr> <CR> search('{\%#}', 'n') ? "\<CR>\<CR>\<Up>\<C-f>" : "\<CR>"
 
 "Spaces
 set shiftwidth=4
@@ -35,12 +43,13 @@ set splitbelow
 
 "Plugins
 call plug#begin()
-  Plug 'preservim/nerdtree'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'Yggdroot/indentLine'
-  Plug 'itchyny/lightline.vim'
+Plug 'preservim/nerdtree'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Yggdroot/indentLine'
+Plug 'itchyny/lightline.vim'
+Plug 'dracula/vim', { 'as': 'dracula' }
 call plug#end()
-
+colorscheme dracula
 "NerdTree
 "autocmd VimEnter * NERDTree
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
